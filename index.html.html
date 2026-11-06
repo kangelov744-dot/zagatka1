@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>File 2711 – The Last Break</title>
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=Marck+Script&family=Roboto+Slab:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#e6d6ac;--paper2:#f1e8cc;--ink:#1d1a16;--red:#b3202e;--blue:#27406b;box-sizing:border-box}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.6 "PT Mono",Courier,monospace;background:#2a2723 repeating-linear-gradient(90deg,#2d2a26 0 3px,#26231f 3px 7px);padding:max(12px,env(safe-area-inset-top)) 10px max(20px,env(safe-area-inset-bottom))}
+.wrap{max-width:760px;margin:0 auto}
+.top{display:flex;justify-content:space-between;color:#d9d2c0;font-size:13px;margin-bottom:6px;gap:8px}
+nav{display:flex;gap:3px;overflow-x:auto;padding-left:6px}
+nav button{font:600 13px "Roboto Slab",serif;background:#b9a673;color:#3a3220;border:0;border-radius:8px 8px 0 0;padding:9px 12px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--paper);color:var(--ink)}
+.folder{background:var(--paper);padding:20px 16px 26px;border-radius:0 6px 6px 6px;box-shadow:0 8px 24px #0009;position:relative}
+.stamp{position:absolute;right:14px;top:10px;transform:rotate(8deg);border:3px double var(--red);color:var(--red);font:800 15px "Roboto Slab",serif;padding:2px 10px;opacity:.85}
+h1,h2,h3{font-family:"Roboto Slab",serif;margin:.3em 0}
+h1{font-size:25px;margin-top:22px}
+h2{font-size:19px;border-bottom:2px solid var(--ink);padding-bottom:3px;margin-top:22px}
+.sec{display:none}.sec.on{display:block}
+.note{font:20px/1.3 "Marck Script",cursive;color:var(--blue)}
+.paper{background:var(--paper2);padding:14px;margin:16px 0;box-shadow:1px 2px 5px #0004;position:relative}
+.tag{position:absolute;top:-9px;left:12px;background:var(--red);color:#fff;font:700 11px "Roboto Slab",serif;padding:1px 8px;border-radius:2px}
+.red{background:repeating-linear-gradient(135deg,#222 0 6px,#111 6px 12px);color:#aaa;text-align:center}
+table{width:100%;border-collapse:collapse}td{padding:4px 6px;border-bottom:1px dashed #0006;vertical-align:top}td:first-child{white-space:nowrap;font-weight:700;color:var(--red)}
+.btn{font:700 14px "Roboto Slab",serif;background:var(--ink);color:var(--paper2);border:0;padding:9px 16px;border-radius:3px;cursor:pointer;margin:3px 3px 3px 0}
+.btn.r{background:var(--red)}.btn.g{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+select,input{font:inherit;padding:8px;border:2px solid var(--ink);background:var(--paper2);color:var(--ink);max-width:100%;border-radius:2px}
+.id{display:flex;gap:12px;align-items:center}
+.photo{width:64px;height:80px;background:#6f6a58;border:6px solid #fff;border-bottom-width:16px;flex:none}
+.ok{color:#14602b;font-weight:700}.no{color:var(--red);font-weight:700}
+.bar{height:10px;background:#0003;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--red);transition:width .4s}
+.cnt{display:flex;gap:14px;font-size:13px;margin:8px 0}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+</style></head><body><div class="wrap">
+<div class="top"><span>Math High School · 5 November 2026</span></div>
+<nav id="nav"></nav>
+<div class="folder"><div class="stamp">CASE NO. 2711</div>
+<section class="sec" id="s0"></section><section class="sec" id="s1"></section><section class="sec" id="s2"></section><section class="sec" id="s3"></section><section class="sec" id="s4"></section>
+</div></div><script>
+const $=i=>document.getElementById(i);
+const tabs=["The Case","Evidence","Interviews","Investigation","Accusation"];
+const C=[["Bela","MG","Kristiyan asked her whether she had kept an old conversation.","That she forwarded information to someone else.","Not fully confirmed."],
+["Valya","near Lindo","She had serious 'colleague' problems with Kristiyan at the disco.","Their last conversation was much tenser than she admits.","Ilyana saw her near Lindo, but not the whole time."],
+["Vasa","Gradinka","Heard two people arguing without seeing their faces.","Not sure whether one of the voices was Kristiyan's.",""],
+["Vesela","MG","Knows Kristiyan wanted to expose a classmate's secret.","She promised him not to tell anyone.",""],
+["Viktor","near Korner","Saw a person with a dark backpack walking away from MG.","Not sure whether the backpack was black or navy blue.",""],
+["Gabi","MG","Received an anonymous message: “Stay out of things you don't understand. You definately have no part in this.”","She deleted it because she got scared.",""],
+["Denislav","Jorka","Saw Kristiyan talking on the phone.","Recognised the voice of the person on the other end, but refuses to say whose.",""],
+["Elena","Gradinka","Saw two people arguing heatedly: one in a light jacket, the other with a dark backpack.","",""],
+["Elina","MG (never left)","She did step out briefly but won't admit it because of a school rule.","Saw Teodor in the corridor at a time when he claims he was outside.",""],
+["Elitsa","Korner","Claims she knows nothing about the case and did not see Kristiyan after classes. Carries a navy-blue backpack.","Asked about the torn sheet, she says she never saw it, yet mentions the word “Lindo”, which is written on it.","Claims she was in Korner non-stop from 15:00 to 15:30."],
+["Iva","MG","Kiril is not telling the truth about where he was.","She quarrelled with him and doesn't want to look like she's hurting him.",""],
+["Ilyana","Lindo","Saw Valya. Also saw a person who kept looking toward the MG entrance. Saw Elitsa leave Lindo for Korner around 15:16.","Did not mention these two at the first interview.",""],
+["Kiril","Gradinka","Headed back toward MG after the quarrel with Iva.","Lies about the time he came back.",""],
+["Kremena","MG","Knows Kristiyan had a meeting after the last class and was very worried. Says Elitsa never parts with her navy-blue backpack.","Doesn't know who the meeting was with.",""],
+["Kristina","Jorka","Spoke with Kristiyan that day.","Deleted a message with personal information unrelated to the case.",""],
+["Kristiyan Nikolaev","MG","Kristiyan Angelov tried to reach him by phone.","They had arranged a talk, but he says it was cancelled. Phone records can check this.",""],
+["Natalia","Lindo","Has a conflict with Silvia.","Learned that day that Silvia talks about her behind her back.","Not confirmed for the whole period."],
+["Nikol","MG","Saw Kristiyan leave something in a classroom.","Didn't check what, so as not to get involved.",""],
+["Siyana","Jorka","Heard the name Teodor in a conversation between two students.","Doesn't know whether they meant him or someone else.",""],
+["Silvia (Sisa)","Gradinka","Her conflict with Natalia is more serious than she admits.","They exchanged harsh messages. Knows about a talk between Kristiyan and Natalia but wasn't present.",""],
+["Sofia","MG","Received a message from an anonymous profile: “Kristiyan will soon find out who your real friend is. You definately don't see it.”","The profile was created very recently.",""],
+["Spas Damyanov","Korner","Is into knives and collecting.","Kristiyan joked about his hobby and they quarrelled. No link to the case.",""],
+["Spas Terziyski","MG","Saw a person coming out of Gradinka.","Did not recognise the face, but remembers the colour of the clothes.",""],
+["Teodor","Lindo","Used to get anonymous insulting messages and deleted them.","Quarrelled with Kristiyan a week earlier and is ashamed to admit it. Around 15:10 he stepped out for a few minutes to the toilet.","Claims he was in Lindo non-stop from 15:00 to 15:30."],
+["Hristiyana","MG","Kristiyan told her he was afraid someone would expose a secret of his.","Knows about an arranged meeting, but not with whom.",""],
+["Hristo","Fasa","At first denies having been near MG.","Saw Kristiyan after the last class, but won't explain why he was there (a personal talk with another student).",""]];
+const S=[["Ilyana","I was in Lindo. I saw Valya, but I'm not sure how long she stayed. Shortly after, I noticed a person who seemed to be watching the MG entrance."],["Iva","Kiril isn't telling the truth. He went back toward the school."],["Valya","We had problems with Kristiyan, but it was a work conflict. I have no reason to hurt him."],["Elitsa","I was in Korner all afternoon. I haven't seen Kristiyan."],["Spas Damyanov","Everyone looks at me strangely because of my hobby. I have nothing to do with it."],["Silvia","Natalia has personal problems with me, but I don't see what that has to do with the case."],["Hristo","I haven't seen Kristiyan since classes."],["Teodor","I was in Lindo. I never left."]];
+const PH={"Elitsa":"0888 456 123","Teodor":"0877 111 222","Kristiyan Nikolaev":"0899 333 444","Valya":"0878 555 666","Spas Damyanov":"0899 777 808"};
+const E=[[0,"The last message","15:06, from Kristiyan's phone: “We need to talk. I know what you did. If you don't come, everyone will find out.” Recipient unknown."],
+[0,"Torn sheet","In Kristiyan's pocket: the numbers 12 – 9 – 14 – 4 – 15 and below them the word LAST."],
+[1,"Lindo recording","The camera shows an unclear figure at 15:11. Its clock runs 6 minutes slow."],
+[1,"Receipt from Korner","Issued at 15:18."],
+[2,"Floor monitor","Teodor left the classroom between 15:07 and 15:13, and was in Lindo from then until the end."],
+[3,"Back of the receipt","“It wasn't her. They can definately prove nothing.” Handwriting not identified."],
+[3,"Messages from voluntarily handed-over phones","Viktor: “I saw something, but I'm not sure what.” Spas Damyanov: “I have nothing to do with it, I never met him.” Elitsa: “Don't text me, I definately have nothing to do with this.” (Others did not provide any.)"],
+[4,"Call list","One number called Kristiyan three times: 14:20, 14:35, 14:55. Number: 0888 456 123."],
+[5,"Korner log","Spas Damyanov bought something for his collection at 15:05 and left. He returned at 15:25."],
+[6,"The anonymous profiles","The profiles that sent messages to classmates were used from a phone connected to Korner's Wi-Fi."],
+[6,"Recovered conversation","Kristiyan: “I won't cover for you anymore.” Unknown: “You have no proof.” Kristiyan: “Then why are you so scared?”"],
+[7,"Sheet analysis","On the back of the sheet there is a tiny letter. Kristiyan wrote it. It's the initial of the person he was meeting."]];
+const ST=[
+{t:"The secret code",q:"The numbers on the sheet are a cipher. Which word do they hide?",a:"LINDO",h:"The numbers follow the order of the alphabet.",r:"Lindo. Kristiyan wrote down the place of his last meeting."},
+{t:"The wrong clock",q:"At what time was the figure really recorded by the Lindo camera? (hh:mm)",a:"15:17",h:"The clock is slow, so the real time is later.",r:"The real time is 15:17, one minute before the receipt. Lindo and Korner are next to each other. Teodor left earlier (15:07–15:13), so it isn't him."},
+{t:"The backpack",q:"Witnesses saw a person with a dark backpack. Which of those who say they were in Korner carries one? (name)",a:"Elitsa",h:"First check who says they were in Korner.",r:"Elitsa has a navy-blue backpack. New evidence is unlocked."},
+{t:"The note from Korner",q:"Who wrote the note on the back of the receipt? Look for a repeated spelling habit. (name)",a:"Elitsa",h:"Compare words in Evidence and in the Case.",r:"The note was written by Elitsa, who was in Korner at 15:18."},
+{t:"The number",q:"Whose number called Kristiyan? (name)",a:"Elitsa",h:"Interview people connected to Kristiyan.",r:"The number is Elitsa's. She called Kristiyan three times, and at 15:06 he texted her, inviting her to meet at Lindo."},
+{t:"The alibi",q:"Elitsa claims she was in Korner all afternoon. At what time did a witness see her leave Lindo? (hh:mm)",a:"15:16",h:"Who was in Lindo and saw something?",r:"Ilyana saw her leave around 15:16. Her alibi is broken."},
+{t:"The motive",q:"What was Elitsa hiding?",o:["That she stole from a shop","That she runs the anonymous profiles","That she broke a school rule","That she cheated on a test","That she forged grades"],a:"That she runs the anonymous profiles",h:"The anonymous messages, where they were sent from and what Kristiyan says.",r:"Elitsa wrote anonymously to turn classmates against each other. Kristiyan found out and texted her to meet."},
+{t:"The hidden sign",q:"Which letter did Kristiyan write on the back of the sheet? (letter)",a:"E",h:"Whose initial are we looking for?",r:"The letter E. Open the Accusation tab."}];
+let sv=0,hc=0,ms=0,done=false;
+const HM=3;
+function ok(g,v){const n=x=>x.trim().toUpperCase().replace(/\s+/g,"").replace(/TZ/g,"TS");return n(v)===n(g)}
+const tn=$("nav");tabs.forEach((t,i)=>{const b=document.createElement("button");b.textContent=t;b.onclick=()=>go(i);tn.append(b)});
+function go(i){[...tn.children].forEach((b,j)=>b.classList.toggle("on",j==i));for(let j=0;j<5;j++)$("s"+j).classList.toggle("on",j==i)}
+$("s0").innerHTML=`<h1>The Last Break</h1><p class="note">Strictly confidential. Investigation team only.</p>
+<h2>Case description</h2><p>On 5 November 2026, at 15:42, a report was filed about an incident near the Math High School. <b>Kristiyan Angelov</b> was found without signs of life. His phone holds the last message he sent:</p><div class="paper"><span class="tag">EVIDENCE</span><i>“We need to talk. I know what you did. If you don't come, everyone will find out.”</i></div><p>The recipient is unknown. Some claim they never spoke to Kristiyan at all, but at least three of them are lying.</p>
+<h2>How to play</h2><p>The investigation has eight steps. Each unlocks after the previous one. Nobody will hand you the answers: cross-check the Case, the Evidence and the Interviews. Careful: there are only ${HM} hints, and every wrong answer or wrong accusation lowers your score.</p><p class="note">Rule: lying about an alibi doesn't make someone a killer. Many people hide small secrets, and some clues point in the wrong direction.</p>
+<h2>Places</h2><p>MG · Gradinka · Lindo (café) · Korner (shop) · Jorka (snack stand) · Fasa. Lindo and Korner are next to each other.</p>
+<h2>Timeline</h2><table>${[["12:30","Kristiyan enters MG"],["13:15","Tense conversation"],["14:05","Spotted in Gradinka"],["14:40","Receives an unknown message"],["15:06","Sends his last message"],["15:30","Last confirmed sighting"],["15:42","Report filed"]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>
+<h2>Witness statements</h2>${S.map((s,i)=>`<div class="paper"><span class="tag">STATEMENT #00${i+1}</span><b>${s[0]}:</b> “${s[1]}”</div>`).join("")}
+<h2>Where they say they were</h2><table>${C.map(c=>`<tr><td>${c[0]}</td><td>${c[1]}</td></tr>`).join("")}</table>`;
+$("s2").innerHTML=`<h1>Interviews</h1><p>Pick a suspect and question them. Pressure only works after step 4.</p><select id="who"><option value="">Pick a name</option>${C.map((c,i)=>`<option value="${i}">${c[0]}</option>`).join("")}</select> <button class="btn" id="show">Question</button><div id="card"></div>`;
+$("show").onclick=drawQ;
+function drawQ(){const v=$("who").value;if(v==="")return;const c=C[v];$("card").innerHTML=`<div class="paper"><span class="tag">INTERVIEW RECORD</span><div class="id"><div class="photo"></div><div><h3>${c[0]}</h3>Says they were at: <b>${c[1]}</b></div></div><p><b>Says:</b> ${c[2]}${PH[c[0]]?` Phone: ${PH[c[0]]}.`:""}</p>${c[4]?`<p><b>Alibi:</b> ${c[4]}</p>`:""}${sv>=4?`<p><b>Under pressure:</b> ${c[3]||"Nothing important."}</p>`:`<p>The interview isn't finished. Come back later.</p>`}</div>`}
+function drawE(){$("s1").innerHTML=`<h1>Evidence</h1><p class="note">New evidence unlocks with every solved step. Not all of it matters.</p>`+E.map((e,i)=>sv>=e[0]?`<div class="paper"><span class="tag">EVIDENCE #${i+1}</span><b>${e[1]}</b><br>${e[2]}</div>`:`<div class="paper red">██████ CLASSIFIED ██████</div>`).join("")}
+function drawS(){$("s3").innerHTML=`<h1>Investigation</h1><div class="bar"><i style="width:${sv/8*100}%"></i></div><div class="cnt"><span>Solved: ${sv} of 8</span><span>Hints: ${hc}/${HM}</span><span>Mistakes: ${ms}</span></div>`+ST.slice(0,sv+1).map((s,i)=>{const d=i<sv;if(sv==8&&!d)return"";return d?`<div class="paper"><span class="tag">STEP ${i+1}</span><b>${s.t}</b><p class="ok">Solved. ${s.r}</p></div>`:`<div class="paper"><span class="tag">STEP ${i+1}</span><b>${s.t}</b><p><b>${s.q}</b></p>${s.o?s.o.map(o=>`<button class="btn g" onclick="an(${i},this.textContent)">${o}</button>`).join(""):`<input id="a${i}" size="14" placeholder="Answer"> <button class="btn" onclick="an(${i},$('a${i}').value)">Check</button>`}<p id="r${i}" class="no"></p><button class="btn g" onclick="hn(${i})">Hint</button><p id="h${i}" class="note"></p></div>`}).join("")}
+function hn(i){const e=$("h"+i);if(e.textContent){e.textContent="";return}if(hc>=HM){e.textContent="No hints left.";return}hc++;e.textContent=ST[i].h;document.querySelector(".cnt span:nth-child(2)").textContent=`Hints: ${hc}/${HM}`}
+function an(i,v){if(i!=sv)return;if(ok(ST[i].a,v)){sv++;drawS();drawE();drawA();if($("who").value!=="")drawQ()}else{ms++;drawS();$("r"+i).textContent="Not correct. Look for more information."}}
+function drawA(){if(done)return;$("s4").innerHTML=sv<8?`<h1>Accusation</h1><p>The accusation unlocks after all eight steps. Solved: ${sv} of 8.</p>`:`<h1>Accusation</h1><p>Who is the culprit?</p><select id="acc"><option value="">Pick a suspect</option>${C.map(c=>`<option>${c[0]}</option>`).join("")}</select> <button class="btn r" onclick="ac()">Sign the accusation</button><div id="res"></div>`}
+function ac(){const v=$("acc").value;if(!v)return;if(v!=="Elitsa"){ms++;$("res").innerHTML=`<p class="no">${v} has an alibi or no motive. The prosecutor sends the case back. Your mistakes: ${ms}.</p>`;return}
+done=true;const sc=Math.max(0,100-ms*8-hc*6);const rk=sc>=85?"Chief Investigator":sc>=60?"Investigator":"Trainee";
+$("s4").innerHTML=`<h1>Case closed</h1><div class="paper"><span class="tag">ACCUSATION SIGNED</span><p>Elitsa sent anonymous messages to turn classmates against each other. Kristiyan found out and invited her to meet at Lindo at 15:06, and she lied about her alibi, having passed through Korner at 15:18.</p><p><b>Score: ${sc}/100 · ${rk}</b><br>Mistakes: ${ms} · Hints: ${hc}/${HM}</p></div><button class="btn" onclick="location.reload()">New investigation</button>`}
+drawS();drawE();drawA();go(0);
+</script></body></html>
